@@ -24,26 +24,9 @@ require_relative "../lib/command_line_interface.rb"
 def get_character_movies_from_api(character)
   #make the web request
   # url = "http://www.swapi.co/api/people/?page=#{page_n}"
-
-  # all_characters = RestClient.get("http://www.swapi.co/api/people/?page=#{page_n}")
-  # character_hash = JSON.parse(all_characters)
   next_url = "http://www.swapi.co/api/people/?page=#{1}"
-  page_n = 1
-  # all_characters = nil
-  # until next_url == nil
-  #   all_characters += RestClient.get("http://www.swapi.co/api/people/?page=#{page_n}")
-  #   page_n += 1
-  # end
-
-
-
-
-
-
   films_array = []
   films_hash_array = []
-
-    # characters = []
   page_n = 1
   until films_array.length > 0 || next_url == nil
     all_characters = RestClient.get("http://www.swapi.co/api/people/?page=#{page_n}")
@@ -55,7 +38,6 @@ def get_character_movies_from_api(character)
       end
     end
 
-    # binding.pry
 
     films_array.each do |url|
      film_string = RestClient.get(url)
@@ -72,13 +54,6 @@ def get_character_movies_from_api(character)
  else
    films_hash_array
  end
-
-
-
- # binding.pry
-
- # films_array = get_films_url_for_character(character, characters_array)
- # get_films_hash(films_array)
 end
 
 #WE KNOW OUR NAMES FOR THINGS SUCK. WILL REVISIT.
@@ -97,7 +72,6 @@ end
 def parse_character_movies(films_hash)
   # some iteration magic and puts out the movies in a nice list
   films_hash.each do |film|
-    # binding.pry
     puts "#{film["title"]}"
   end
 end
@@ -108,16 +82,7 @@ def show_character_movies(character)
 
 end
 
-
-# def run
-#   welcome
-#   character = get_character_from_user
-#   show_character_movies(character)
-# end
-
 ## BONUS
 
 # that `get_character_movies_from_api` method is probably pretty long. Does it do more than one job?
 # can you split it up into helper methods?
-
-# Pry.start
